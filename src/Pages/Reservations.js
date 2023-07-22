@@ -2,10 +2,11 @@ import React from "react";
 import BookingForm from "../BookingForm";
 import { useReducer } from "react";
 import {fetchAPI, submitAPI} from "../BookingAPI";
-import { redirect } from "react-router-dom";
-
+import {  useNavigate } from "react-router-dom";
 
 export default function Reservations(){
+  const navigate=useNavigate();
+
 
 
     function updateTimes(date) {
@@ -17,19 +18,19 @@ export default function Reservations(){
       const [availableTimes, dispatch] = useReducer(updateTimes, output);
 
 
-    function submitForm(formData){
+    function useSubmitForm(formData){
         const submit = submitAPI(formData);
-        return{
-          if (submit) { redirect("/confirmation") }
+        console.log(formData);
+          if (submit) {
+           return  navigate('/confirmation');
+          }
         }
-    }
-
 
 
     return(
         <>
         <h1>Reservation Page</h1>
-        <BookingForm availableTimes={availableTimes} updateTimes={dispatch} submitForm={submitForm}/>
+        <BookingForm availableTimes={availableTimes} updateTimes={dispatch} submitForm={useSubmitForm}/>
         </>
     )
 }

@@ -9,12 +9,32 @@ export default function BookingForm(props){
     const [lname, setLName] = useState("");
     const [email, setEmail] = useState("");
     const [guests, setGuests] = useState(1);
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date());
     const [time, setTime] = useState( props.availableTimes.map((times) => <option>{times}</option>));
     const [occasion, setOccasion] = useState("");
     const [comment, setComment] = useState("");
 
-    function handleSubmit(){
+
+
+
+    function handleDateChange(e) {
+        setDate(e.target.value);
+
+        var stringify = new Date(e.target.value);
+
+        props.updateTimes(stringify.getDate());
+        props.availableTimes.length === 0? setTime(<option>No time available</option>) :
+
+        setTime(props.availableTimes.map((times) => {<option>{times}</option>}));
+      }
+      const getIsFormValid = () => {
+        return (
+          fname && lname && email && guests>0 && date && (time&& props.availableTimes.length !== 0) && (occasion&& occasion!=="--Select")
+        );
+      };
+
+      function handleSubmit(e){
+        e.preventDefault();
         const data = {
             firstName : fname,
             lastName: lname,
@@ -25,33 +45,22 @@ export default function BookingForm(props){
             occasion: occasion,
             comment: comment
         }
+        return(
         props.submitForm(data)
+        )
     }
-    function handleDateChange(e) {
-        setDate(e.target.value);
-
-        var stringify = e.target.value;
-        const date = new Date(stringify);
-
-        props.updateTimes(date);
-
-        setTime(props.availableTimes.map((times) => <option>{times}</option>));
-      }
 
     return(
         <div className="bookingForm">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="fName"> First Name: </label> <br/>
-                    <input type="text" id="fName" value={fname} onChange={e => setFName(e.target.value)}></input>
+                    <input type="text" id="fName" placeholder="First Name" value={fname} onChange={e => setFName(e.target.value)} required minLength={2} maxLength={60} input/>
                 </div>
                 <div>
-                    <label htmlFor="lName" > Last Name: </label> <br/>
-                    <input type="text" id="lName" value={lname} onChange={e => setLName(e.target.value)}></input>
+                    <input type="text" id="lName" placeholder="Last Name" value={lname} onChange={e => setLName(e.target.value)} required minLength={2} maxLength={60}></input>
                 </div>
                 <div>
-                    <label htmlFor="email"> Email: </label> <br/>
-                    <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)}></input>
+                    <input type="email" id="email" placeholder="Email" value={email} minLength={4} maxLength={200} required onChange={e => setEmail(e.target.value)} ></input>
                 </div>
                 <div>
                     <label htmlFor="guests"> Number of guests: </label> <br/>
@@ -64,14 +73,16 @@ export default function BookingForm(props){
                 <div>
                     <label htmlFor="time">Select Time</label> <br></br>
                     <select id="time" required>
-                    {time}
+                     {time}
                     </select>
                 </div>
                 <div>
                     <label htmlFor="occasion"> Occassion: </label> <br/>
                     <select id="occasion" value={occasion} onChange={e => setOccasion(e.target.value)}>
+                        <option>--Select</option>
                         <option>Birthday</option>
                         <option>Anniversary</option>
+                        <option>Other</option>
                     </select>
                 </div>
                 <div>
@@ -79,8 +90,9 @@ export default function BookingForm(props){
                 <textarea id="comments" rows={8} cols={50} value={comment} onChange={e => setComment(e.target.value)}>
                 </textarea>
             </div>
-            <button onSubmit={handleSubmit} >
-                <Link to="/confirmation">Book Table</Link>
+
+            <button type="submit" disabled={!getIsFormValid()}>
+               Submit
             </button>
 
             </form>
