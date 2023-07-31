@@ -277,3 +277,68 @@ margin-bottom: 32px;
   top: 60px;
   left: 90px;
 }
+
+
+
+/*-----------------Reservation Page----------------------*/
+.bg-img{
+  margin: auto;
+  max-width: 100%;
+  min-height: 140vh;
+  position:relative;
+  z-index:-1;
+  display:block;
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-form{
+  background-color: rgb(255,255,255,73%);
+  position: absolute;
+  padding-left : 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  top: 21%;
+  left: 30%;
+  text-align: left;
+}
+
+.bookingForm h3{
+  text-align: center;
+  font-family: 'Markazi Text';
+  font-size: 38px;
+  font-weight: lighter;
+  margin: 0;
+}
+
+.textInput{
+  background-color: #EDEFEE;
+  border-style: none;
+  font-family: 'karla';
+  font-size: larger;
+  padding-left: 12px;
+  margin-top: 0;
+}
+
+.formText > h6{
+  font-family: 'karla';
+  font-size: 24px;
+  font-weight:500;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.calender{
+  width:"350px";
+  height:"32px";
+}
+#submit{
+  margin-left: 25%;
+  margin-top: 18px;
+}
+
+
+

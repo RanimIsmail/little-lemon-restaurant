@@ -3,6 +3,8 @@ import BookingForm from "../BookingForm";
 import { useReducer } from "react";
 import {fetchAPI, submitAPI} from "../BookingAPI";
 import {  useNavigate } from "react-router-dom";
+import Header from "../Header";
+import Footer from "../Footer.js";
 
 export default function Reservations(){
   const navigate=useNavigate();
@@ -29,8 +31,12 @@ export default function Reservations(){
 
     return(
         <>
-        <h1>Reservation Page</h1>
+        <Header/>
+        <img className="bg-img" src="../images/bg-img.jpg"/>
+        <div className="bg-form">
         <BookingForm availableTimes={availableTimes} updateTimes={dispatch} submitForm={useSubmitForm}/>
+        </div>
+        <Footer />
         </>
     )
 }
