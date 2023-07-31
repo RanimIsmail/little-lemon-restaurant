@@ -33,6 +33,7 @@ export default function Reservations(){
         <>
         <Header/>
         <img className="bg-img" src="../images/bg-img.jpg"/>
+        <div className="background"></div>
         <div className="bg-form">
         <BookingForm availableTimes={availableTimes} updateTimes={dispatch} submitForm={useSubmitForm}/>
         </div>

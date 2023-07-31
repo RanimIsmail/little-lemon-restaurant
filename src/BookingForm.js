@@ -28,7 +28,7 @@ export default function BookingForm(props){
 
       const getIsFormValid = () => {
         return (
-          fname && lname && email && guests>0 && date && (time&& props.availableTimes.length !== 0) && (occasion&& occasion!=="--Select")
+          fname && lname && email && guests>0 && date && (time && time!=="No time available") && (occasion && occasion!=="--Select")
         );
       };
 
@@ -44,6 +44,7 @@ export default function BookingForm(props){
             occasion: occasion,
             comment: comment
         }
+        alert("Table booked successfully!");
         return(
         props.submitForm(data)
         )
@@ -101,7 +102,7 @@ export default function BookingForm(props){
             </div>
 
             <button className="main-btn" id="submit" type="submit" disabled={!getIsFormValid()} aria-label="Click to submit">
-               Submit
+               Book Now
             </button>
 
             </form>

@@ -342,3 +342,19 @@ margin-bottom: 32px;
 
 
 
+/*--------Confirmation Page------*/
+.confirmation{
+  margin: 20px;
+  padding: 60px;
+  text-align: center;
+  font-family: 'karla';
+}
+.confirmation >h1{
+  color:#f06e32;
+  font-weight:600;
+  font-size: 48px;
+}
+
+.confirmation>h5{
+  font-size:x-large;
+}
