@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer(){
 return(
     <div className="footer">
-        <img src="./images/footer-logo.png" alt="footer logo image"></img>
+        <img src="./images/footer-logo.png" alt="footer logo"></img>
         <div className="footer-nav-container">
             <div className="col">
             <h6>Doormat Navigation</h6>
